@@ -1,0 +1,5 @@
+require("elliott.remap")
+require("elliott.set")
+require("elliott.lazy")
+require("elliott.colors")
+require("elliott.pluginbinds")
