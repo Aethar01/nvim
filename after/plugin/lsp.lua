@@ -42,7 +42,7 @@ require('lspconfig').eslint.setup({})
 require('lspconfig').jsonls.setup({})
 require('lspconfig').dockerls.setup({})
 require('lspconfig').pylsp.setup({})
-require('lspconfig').vimtex.setup({})
+-- require('lspconfig').vimtex.setup({})
 
 
 local cmp = require('cmp')
