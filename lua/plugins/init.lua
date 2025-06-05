@@ -15,7 +15,14 @@ return {
     'nvim-treesitter/nvim-treesitter-context',
 
     -- Harpoon
-    'ThePrimeagen/harpoon',
+    {
+        'ThePrimeagen/harpoon',
+        branch = 'harpoon2',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+        }
+    },
+    -- 'ThePrimeagen/harpoon',
 
     -- Undotree
     'mbbill/undotree',
@@ -62,4 +69,10 @@ return {
       'mcauley-penney/visual-whitespace.nvim',
       config = true
     },
+    {
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
+        opts = { -- set to setup table
+    }
+}
 }

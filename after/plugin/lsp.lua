@@ -34,16 +34,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- require('lspconfig').ocamllsp.setup({})
-require('lspconfig').lua_ls.setup({})
-require('lspconfig').rust_analyzer.setup({})
-require('lspconfig').ts_ls.setup({})
-require('lspconfig').eslint.setup({})
-require('lspconfig').jsonls.setup({})
-require('lspconfig').dockerls.setup({})
-require('lspconfig').pylsp.setup({})
--- require('lspconfig').vimtex.setup({})
-
+vim.lsp.enable('ocamllsp')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('eslint')
+vim.lsp.enable('jsonls')
+vim.lsp.enable('dockerls')
+vim.lsp.enable('pylsp')
+vim.lsp.enable('texlab')
 
 local cmp = require('cmp')
 

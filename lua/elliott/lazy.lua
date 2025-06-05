@@ -1,1 +1,1 @@
-return require('lazy').setup("plugins")
+return require('lazy').setup('plugins')
