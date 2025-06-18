@@ -1,9 +1,12 @@
 -- Reserve a space in the gutter
 vim.opt.signcolumn = 'yes'
 
+local lspconfig = require('lspconfig')
+
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
+local lspconfig_defaults = lspconfig.util.default_config
+
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
   'force',
   lspconfig_defaults.capabilities,
@@ -43,6 +46,35 @@ vim.lsp.enable('jsonls')
 vim.lsp.enable('dockerls')
 vim.lsp.enable('pylsp')
 vim.lsp.enable('texlab')
+
+
+vim.lsp.config['tinymist'] = {
+    on_attach = function(client, bufnr)
+        vim.keymap.set("n", "<leader>tp", function()
+            client:exec_cmd({
+                title = "pin",
+                command = "tinymist.pinMain",
+                arguments = { vim.api.nvim_buf_get_name(0) },
+            }, { bufnr = bufnr })
+        end, { desc = "[T]inymist [P]in", noremap = true })
+
+        vim.keymap.set("n", "<leader>tu", function()
+            client:exec_cmd({
+                title = "unpin",
+                command = "tinymist.pinMain",
+                arguments = { vim.v.null },
+            }, { bufnr = bufnr })
+        end, { desc = "[T]inymist [U]npin", noremap = true })
+    end,
+
+    settings = {
+        exportPdf = "onSave",
+        outputPath = "$root/$dir/$name",
+    }
+}
+vim.lsp.enable('tinymist')
+
+
 
 local cmp = require('cmp')
 
