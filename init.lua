@@ -22,10 +22,12 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig.git" },
 	{ src = "https://github.com/mason-org/mason.nvim.git" },
 	{ src = "https://github.com/stevearc/oil.nvim.git" },
-	{ src = "https://github.com/lambdalisue/vim-suda" },
-	{ src = "https://github.com/mcauley-penney/visual-whitespace.nvim" },
-	{ src = "https://github.com/catgoose/nvim-colorizer.lua" },
-	{ src = "https://github.com/lervag/vimtex" },
+	{ src = "https://github.com/lambdalisue/vim-suda.git" },
+	{ src = "https://github.com/mcauley-penney/visual-whitespace.nvim.git" },
+	{ src = "https://github.com/catgoose/nvim-colorizer.lua.git" },
+	{ src = "https://github.com/lervag/vimtex.git" },
+	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git" },
+	{ src = "https://github.com/supermaven-inc/supermaven-nvim.git" },
 })
 
 -- colorscheme
@@ -104,3 +106,17 @@ vim.g.maplocalleader = ","
 
 -- suda
 vim.g.suda_smart_edit = 1
+
+-- supermaven
+require("supermaven-nvim").setup({
+    keymaps = {
+        accept_suggestion = "<C-l>",
+        clear_suggestion = "<C-h>",
+        accept_word = "<C-j>",
+    }
+})
+
+ -- tiny-inline-diagnostic
+ require("tiny-inline-diagnostic").setup({
+		 preset = "classic",
+ })
