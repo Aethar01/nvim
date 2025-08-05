@@ -6,11 +6,11 @@ vim.o.tabstop = 4
 vim.o.swapfile = false
 vim.o.winborder = "rounded"
 vim.o.signcolumn = "yes"
+vim.o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
+vim.o.undofile = true
+vim.o.scrolloff = 8
 vim.g.mapleader = " "
 vim.g.have_nerd_font = true
-vim.opt.undodir = os.getenv("HOME") .. "/.local/nvim/undodir"
-vim.opt.undofile = true
-vim.opt.scrolloff = 8
 
 -- packages
 vim.pack.add({
@@ -18,7 +18,6 @@ vim.pack.add({
 	{ src = "https://github.com/echasnovski/mini.pick.git" },
 	{ src = "https://github.com/echasnovski/mini.move.git" },
 	{ src = "https://github.com/echasnovski/mini.snippets.git" },
-	{ src = "https://github.com/echasnovski/mini.completion.git" },
 	{ src = "https://github.com/neovim/nvim-lspconfig.git" },
 	{ src = "https://github.com/mason-org/mason.nvim.git" },
 	{ src = "https://github.com/stevearc/oil.nvim.git" },
@@ -59,15 +58,15 @@ vim.lsp.enable({
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 require("lspsettings")
 
--- vim.api.nvim_create_autocmd('LspAttach', {
--- 	callback = function(ev)
--- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
--- 		if client:supports_method('textDocument/completion') then
--- 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
--- 		end
--- 	end,
--- })
--- vim.cmd.set("completeopt+=noselect")
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client:supports_method('textDocument/completion') then
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+		end
+	end,
+})
+vim.cmd.set("completeopt+=noselect")
 
 -- mini
 require("mini.pick").setup()
@@ -84,12 +83,13 @@ require("mini.move").setup({
 	},
 })
 require("mini.snippets").setup()
-require("mini.completion").setup()
 
 -- misc
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
--- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "H", "<gv")
+-- vim.keymap.set("v", "L", ">gv")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
@@ -97,6 +97,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
 
 -- vimtex
 vim.g.vimtex_view_method = "zathura"
@@ -109,14 +110,23 @@ vim.g.suda_smart_edit = 1
 
 -- supermaven
 require("supermaven-nvim").setup({
-    keymaps = {
-        accept_suggestion = "<C-l>",
-        clear_suggestion = "<C-h>",
-        accept_word = "<C-j>",
-    }
+	keymaps = {
+		accept_suggestion = "<C-l>",
+		clear_suggestion = "<C-h>",
+		accept_word = "<C-j>",
+	}
 })
 
- -- tiny-inline-diagnostic
- require("tiny-inline-diagnostic").setup({
-		 preset = "classic",
- })
+-- tiny-inline-diagnostic
+require("tiny-inline-diagnostic").setup({
+	preset = "classic",
+})
+
+-- tyspt open pdf
+vim.api.nvim_create_user_command("OpenPdf", function()
+	local filepath = vim.api.nvim_buf_get_name(0)
+	if filepath:match("%.typ$") then
+		local pdf_path = filepath:gsub("%.typ$", ".pdf")
+		vim.system({ "zathura", pdf_path })
+	end
+end, {})
