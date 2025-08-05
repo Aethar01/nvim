@@ -56,7 +56,6 @@ vim.lsp.enable({
 	'tinymist'
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
-require("lspsettings")
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
