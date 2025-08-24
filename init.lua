@@ -18,6 +18,7 @@ vim.pack.add({
 	{ src = "https://github.com/echasnovski/mini.pick.git" },
 	{ src = "https://github.com/echasnovski/mini.move.git" },
 	{ src = "https://github.com/echasnovski/mini.snippets.git" },
+	{ src = "https://github.com/echasnovski/mini.surround.git" },
 	{ src = "https://github.com/neovim/nvim-lspconfig.git" },
 	{ src = "https://github.com/mason-org/mason.nvim.git" },
 	{ src = "https://github.com/stevearc/oil.nvim.git" },
@@ -82,6 +83,7 @@ require("mini.move").setup({
 	},
 })
 require("mini.snippets").setup()
+require("mini.surround").setup()
 
 -- misc
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
@@ -121,11 +123,16 @@ require("tiny-inline-diagnostic").setup({
 	preset = "classic",
 })
 
--- tyspt open pdf
-vim.api.nvim_create_user_command("OpenPdf", function()
-	local filepath = vim.api.nvim_buf_get_name(0)
-	if filepath:match("%.typ$") then
-		local pdf_path = filepath:gsub("%.typ$", ".pdf")
-		vim.system({ "zathura", pdf_path })
+-- Set writing options
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typst" },
+	callback = function()
+		vim.cmd([[
+				setlocal wrapmargin=10
+				setlocal wrap
+				setlocal formatoptions+=t
+				setlocal spell
+				setlocal linebreak
+				]])
 	end
-end, {})
+})
