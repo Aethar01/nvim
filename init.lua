@@ -15,10 +15,10 @@ vim.g.have_nerd_font = true
 -- packages
 vim.pack.add({
 	{ src = "https://github.com/bluz71/vim-moonfly-colors.git" },
-	{ src = "https://github.com/echasnovski/mini.pick.git" },
-	{ src = "https://github.com/echasnovski/mini.move.git" },
-	{ src = "https://github.com/echasnovski/mini.snippets.git" },
-	{ src = "https://github.com/echasnovski/mini.surround.git" },
+	{ src = "https://github.com/nvim-mini/mini.pick.git" },
+	{ src = "https://github.com/nvim-mini/mini.move.git" },
+	{ src = "https://github.com/nvim-mini/mini.snippets.git" },
+	{ src = "https://github.com/nvim-mini/mini.surround.git" },
 	{ src = "https://github.com/neovim/nvim-lspconfig.git" },
 	{ src = "https://github.com/mason-org/mason.nvim.git" },
 	{ src = "https://github.com/stevearc/oil.nvim.git" },
