@@ -3,6 +3,8 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.wrap = false
 vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.smartindent = true
 vim.o.swapfile = false
 vim.o.winborder = "rounded"
 vim.o.signcolumn = "yes"
@@ -54,7 +56,8 @@ vim.lsp.enable({
 	'lua_ls',
 	'pylsp',
 	'rust_analyzer',
-	'tinymist'
+	'tinymist',
+	'fish_lsp'
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
