@@ -1,0 +1,64 @@
+{
+  "plugins": {
+    "mason.nvim": {
+      "rev": "ad7146a",
+      "src": "https://github.com/mason-org/mason.nvim.git"
+    },
+    "mini.move": {
+      "rev": "f33406a",
+      "src": "https://github.com/nvim-mini/mini.move.git"
+    },
+    "mini.pick": {
+      "rev": "96ee37d",
+      "src": "https://github.com/nvim-mini/mini.pick.git"
+    },
+    "mini.snippets": {
+      "rev": "7610dc3",
+      "src": "https://github.com/nvim-mini/mini.snippets.git"
+    },
+    "mini.surround": {
+      "rev": "61db6ba",
+      "src": "https://github.com/nvim-mini/mini.surround.git"
+    },
+    "nvim-colorizer.lua": {
+      "rev": "51cf7c9",
+      "src": "https://github.com/catgoose/nvim-colorizer.lua.git"
+    },
+    "nvim-lspconfig": {
+      "rev": "e688b48",
+      "src": "https://github.com/neovim/nvim-lspconfig.git"
+    },
+    "oil.nvim": {
+      "rev": "919e155",
+      "src": "https://github.com/stevearc/oil.nvim.git"
+    },
+    "semshi": {
+      "rev": "252f07f",
+      "src": "https://github.com/numirias/semshi.git"
+    },
+    "supermaven-nvim": {
+      "rev": "07d20fc",
+      "src": "https://github.com/supermaven-inc/supermaven-nvim.git"
+    },
+    "tiny-inline-diagnostic.nvim": {
+      "rev": "6d8dc61",
+      "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git"
+    },
+    "vim-moonfly-colors": {
+      "rev": "78b4733",
+      "src": "https://github.com/bluz71/vim-moonfly-colors.git"
+    },
+    "vim-suda": {
+      "rev": "9adda7d",
+      "src": "https://github.com/lambdalisue/vim-suda.git"
+    },
+    "vimtex": {
+      "rev": "2e1bbabe",
+      "src": "https://github.com/lervag/vimtex.git"
+    },
+    "visual-whitespace.nvim": {
+      "rev": "77bd21f",
+      "src": "https://github.com/mcauley-penney/visual-whitespace.nvim.git"
+    }
+  }
+}

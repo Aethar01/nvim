@@ -16,19 +16,27 @@ vim.g.have_nerd_font = true
 
 -- packages
 vim.pack.add({
+	-- moonfly colors
 	{ src = "https://github.com/bluz71/vim-moonfly-colors.git" },
+	-- mini
 	{ src = "https://github.com/nvim-mini/mini.pick.git" },
 	{ src = "https://github.com/nvim-mini/mini.move.git" },
 	{ src = "https://github.com/nvim-mini/mini.snippets.git" },
 	{ src = "https://github.com/nvim-mini/mini.surround.git" },
+	-- lsp
 	{ src = "https://github.com/neovim/nvim-lspconfig.git" },
 	{ src = "https://github.com/mason-org/mason.nvim.git" },
+	-- file management
 	{ src = "https://github.com/stevearc/oil.nvim.git" },
 	{ src = "https://github.com/lambdalisue/vim-suda.git" },
+	-- misc
 	{ src = "https://github.com/mcauley-penney/visual-whitespace.nvim.git" },
 	{ src = "https://github.com/catgoose/nvim-colorizer.lua.git" },
+	-- tex
 	{ src = "https://github.com/lervag/vimtex.git" },
+	-- typst
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git" },
+	-- ai
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim.git" },
 })
 
