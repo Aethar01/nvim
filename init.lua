@@ -65,7 +65,8 @@ vim.lsp.enable({
 	'pylsp',
 	'rust_analyzer',
 	'tinymist',
-	'fish_lsp'
+	'fish_lsp',
+	'clangd'
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
