@@ -38,6 +38,8 @@ vim.pack.add({
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git" },
 	-- ai
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim.git" },
+	-- cmp
+	{ src = "https://github.com/saghen/blink.cmp.git" },
 })
 
 -- colorscheme
@@ -57,6 +59,7 @@ require("oil").setup({
 	}
 })
 vim.keymap.set('n', '<leader>e', ":Oil --float<CR>")
+vim.keymap.set('n', '<leader>E', ":Oil<CR>")
 
 -- lsp
 require("mason").setup()
@@ -66,19 +69,20 @@ vim.lsp.enable({
 	'rust_analyzer',
 	'tinymist',
 	'fish_lsp',
-	'clangd'
+	'clangd',
+	'ocamllsp',
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
-vim.api.nvim_create_autocmd('LspAttach', {
-	callback = function(ev)
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client:supports_method('textDocument/completion') then
-			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-		end
-	end,
-})
-vim.cmd.set("completeopt+=noselect")
+-- vim.api.nvim_create_autocmd('LspAttach', {
+-- 	callback = function(ev)
+-- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+-- 		if client:supports_method('textDocument/completion') then
+-- 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+-- 		end
+-- 	end,
+-- })
+-- vim.cmd.set("completeopt+=noselect")
 
 -- mini
 require("mini.pick").setup()
@@ -97,6 +101,9 @@ require("mini.move").setup({
 require("mini.snippets").setup()
 require("mini.surround").setup()
 
+-- blink
+require("blink.cmp").setup()
+
 -- misc
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -111,6 +118,9 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
+	-- quickfix list navigation
+vim.keymap.set("n", "C-j", ":cnext<CR>")
+vim.keymap.set("n", "C-k", ":cprevious<CR>")
 
 -- vimtex
 vim.g.vimtex_view_method = "zathura"
@@ -137,12 +147,12 @@ require("tiny-inline-diagnostic").setup({
 
 -- Set writing options
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "typst" },
+	pattern = { "typst", "markdown", "tex"},
 	callback = function()
 		vim.cmd([[
-				setlocal wrapmargin=10
+				"setlocal wrapmargin=10
 				setlocal wrap
-				setlocal formatoptions+=t
+				"setlocal formatoptions+=t
 				setlocal spell
 				setlocal linebreak
 				]])
