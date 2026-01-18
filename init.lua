@@ -119,8 +119,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
 	-- quickfix list navigation
-vim.keymap.set("n", "C-j", ":cnext<CR>")
-vim.keymap.set("n", "C-k", ":cprevious<CR>")
+vim.keymap.set("n", "<C-j>", ":cnext<CR>")
+vim.keymap.set("n", "<C-k>", ":cprevious<CR>")
 
 -- vimtex
 vim.g.vimtex_view_method = "zathura"
@@ -156,5 +156,31 @@ vim.api.nvim_create_autocmd("FileType", {
 				setlocal spell
 				setlocal linebreak
 				]])
+	end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typst" },
+	callback = function()
+		vim.keymap.set("n", "<leader>mb", ":make<CR>")
+	end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "rust" },
+	callback = function()
+		vim.keymap.set("n", "<leader>mb", ":make b<CR>")
+		vim.keymap.set("n", "<leader>mr", ":make r<CR>")
+		vim.keymap.set("n", "<leader>mt", ":make t<CR>")
+		vim.keymap.set("n", "<leader>mc", ":make clean<CR>")
+	end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "python" },
+	callback = function()
+		vim.o.makeprg = "python"
+		vim.cmd("compiler pyunit")
+		vim.keymap.set("n", "<leader>mr", ":make %<CR>")
 	end
 })
