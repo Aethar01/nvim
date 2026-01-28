@@ -40,6 +40,8 @@ vim.pack.add({
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim.git" },
 	-- cmp
 	{ src = "https://github.com/saghen/blink.cmp.git" },
+	-- treesitter
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter.git" },
 })
 
 -- colorscheme
@@ -144,6 +146,9 @@ require("supermaven-nvim").setup({
 require("tiny-inline-diagnostic").setup({
 	preset = "classic",
 })
+
+-- treesitter
+require("nvim-treesitter").install({ 'rust', 'lua', 'python' })
 
 -- Set writing options
 vim.api.nvim_create_autocmd("FileType", {

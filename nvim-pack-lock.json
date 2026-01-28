@@ -28,7 +28,14 @@
       "rev": "81e676d",
       "src": "https://github.com/catgoose/nvim-colorizer.lua.git"
     },
-    "nvim-lspconfig": [],
+    "nvim-lspconfig": {
+      "rev": "e688b486fe9291f151eae7e5c0b5a5c4ef980847",
+      "src": "https://github.com/neovim/nvim-lspconfig.git"
+    },
+    "nvim-treesitter": {
+      "rev": "275b9fe801d56d5fea6d34f5bfea8bb24887b805",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
+    },
     "oil.nvim": {
       "rev": "cbcb3f9",
       "src": "https://github.com/stevearc/oil.nvim.git"
