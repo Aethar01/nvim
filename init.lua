@@ -88,8 +88,8 @@ vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
 -- mini
 require("mini.pick").setup()
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>g', ":Pick grep<CR>")
+vim.keymap.set('n', '<leader>f', ":Pick files tool='git'<CR>")
+vim.keymap.set('n', '<leader>g', ":Pick grep tool='git'<CR>")
 vim.keymap.set('n', '<leader>b', ":Pick buffers<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 require("mini.move").setup({
