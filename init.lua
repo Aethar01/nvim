@@ -148,7 +148,7 @@ require("tiny-inline-diagnostic").setup({
 })
 
 -- treesitter
-require("nvim-treesitter").install({ 'rust', 'lua', 'python' })
+require("nvim-treesitter").install({ 'rust', 'lua', 'python', 'markdown' })
 
 -- Set writing options
 vim.api.nvim_create_autocmd("FileType", {
