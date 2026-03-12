@@ -42,6 +42,8 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp.git" },
 	-- treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter.git" },
+	-- git
+	{ src = "https://github.com/tpope/vim-fugitive.git" },
 })
 
 -- colorscheme
@@ -121,8 +123,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
 	-- quickfix list navigation
-vim.keymap.set("n", "<C-j>", ":cnext<CR>")
-vim.keymap.set("n", "<C-k>", ":cprevious<CR>")
+vim.keymap.set("n", "<C-n>", ":cnext<CR>")
+vim.keymap.set("n", "<C-p>", ":cprevious<CR>")
 
 -- vimtex
 vim.g.vimtex_view_method = "zathura"

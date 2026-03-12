@@ -48,6 +48,10 @@
       "rev": "ecce93ff7db4461e942c03e0fcc64bd785df4057",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git"
     },
+    "vim-fugitive": {
+      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
+      "src": "https://github.com/tpope/vim-fugitive.git"
+    },
     "vim-moonfly-colors": {
       "rev": "d11b3d04cc1cb71a778d67a4df73283a5a6d66f4",
       "src": "https://github.com/bluz71/vim-moonfly-colors.git"
