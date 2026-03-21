@@ -122,13 +122,16 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
-	-- quickfix list navigation
+
+-- quickfix list navigation
 vim.keymap.set("n", "<C-n>", ":cnext<CR>")
 vim.keymap.set("n", "<C-p>", ":cprevious<CR>")
 
+local pdf_viewer = "sioyek"
+
 -- vimtex
-vim.g.vimtex_view_method = "zathura"
-vim.g.vimtex_view_general_viewer = "zathura"
+vim.g.vimtex_view_method = pdf_viewer
+vim.g.vimtex_view_general_viewer = pdf_viewer
 vim.g.vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
 vim.g.maplocalleader = ","
 
