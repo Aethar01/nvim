@@ -14,6 +14,8 @@ vim.o.scrolloff = 8
 vim.g.mapleader = " "
 vim.g.have_nerd_font = true
 
+require('vim._core.ui2').enable()
+
 -- packages
 vim.pack.add({
 	-- moonfly colors
@@ -44,7 +46,14 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter.git" },
 	-- git
 	{ src = "https://github.com/tpope/vim-fugitive.git" },
+	-- imgpreview
+	{ src = "https://github.com/Aethar01/imgpreview.nvim.git" },
 })
+
+-- imgpreview
+require("imgpreview").setup()
+vim.keymap.set('n', '<leader>i', ":ImgPreview<CR>")
+vim.keymap.set('n', 'U', ":ImgPreviewPopup<CR>")
 
 -- colorscheme
 vim.g.moonflyTerminalColors = true
@@ -75,8 +84,12 @@ vim.lsp.enable({
 	'fish_lsp',
 	'clangd',
 	'ocamllsp',
+	'marksman',
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+
 
 -- vim.api.nvim_create_autocmd('LspAttach', {
 -- 	callback = function(ev)
@@ -106,7 +119,11 @@ require("mini.snippets").setup()
 require("mini.surround").setup()
 
 -- blink
-require("blink.cmp").setup()
+require("blink.cmp").setup({
+	keymap = {
+		preset = "enter",
+	},
+})
 
 -- misc
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })

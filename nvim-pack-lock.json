@@ -1,43 +1,47 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "cd79f572971c58784ca72551af29af3a63da9168",
+      "rev": "90d14caca4ae557665ab105080c27d5f289a2e30",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
+    "imgpreview.nvim": {
+      "rev": "1cee5967b2ac67f2f813024fd92c39efd446c310",
+      "src": "https://github.com/Aethar01/imgpreview.nvim.git"
+    },
     "mason.nvim": {
-      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
+      "rev": "12ddd182d9efbdc848b540f16484a583d52da0fb",
       "src": "https://github.com/mason-org/mason.nvim.git"
     },
     "mini.move": {
-      "rev": "4d21420",
+      "rev": "74d140143b1bb905c3d0aebcfc2f216fd237080e",
       "src": "https://github.com/nvim-mini/mini.move.git"
     },
     "mini.pick": {
-      "rev": "4ad37ade984e69c43227b82ccdca5a92a22886de",
+      "rev": "437d44eb57312f23e6b931704694fc294922cd88",
       "src": "https://github.com/nvim-mini/mini.pick.git"
     },
     "mini.snippets": {
-      "rev": "a5e5ff2ff2223aff3fc33e6856935f02337b0ccf",
+      "rev": "8e3acd41bd7ee8f89967c83bacc93871b98a14aa",
       "src": "https://github.com/nvim-mini/mini.snippets.git"
     },
     "mini.surround": {
-      "rev": "d648a5601e1c48f175b07d10eba141da338a0a2a",
+      "rev": "2715e04bea3ec9244f15b421dc5b18c0fe326210",
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
     "nvim-colorizer.lua": {
-      "rev": "338409dd8a6ed74767bad3eb5269f1b903ffb3cf",
+      "rev": "5cfe7fffbd01e17b3c1e14af85d5febdef88bd8c",
       "src": "https://github.com/catgoose/nvim-colorizer.lua.git"
     },
     "nvim-lspconfig": {
-      "rev": "44acfe887d4056f704ccc4f17513ed41c9e2b2e6",
+      "rev": "e146efacbafed3789ac568abcc5a981c5decaa58",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-treesitter": {
-      "rev": "4d9466677a5ceadef104eaa0fe08d60d91c4e9a7",
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "oil.nvim": {
-      "rev": "f55b25e493a7df76371cfadd0ded5004cb9cd48a",
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim.git"
     },
     "supermaven-nvim": {
@@ -45,7 +49,7 @@
       "src": "https://github.com/supermaven-inc/supermaven-nvim.git"
     },
     "tiny-inline-diagnostic.nvim": {
-      "rev": "ecce93ff7db4461e942c03e0fcc64bd785df4057",
+      "rev": "e4b60e3794098f9f3e244809296a0a1a63818d12",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git"
     },
     "vim-fugitive": {
@@ -53,7 +57,7 @@
       "src": "https://github.com/tpope/vim-fugitive.git"
     },
     "vim-moonfly-colors": {
-      "rev": "d11b3d04cc1cb71a778d67a4df73283a5a6d66f4",
+      "rev": "ed33cb0e0edfced6e86e782d51f23e67232ad4a9",
       "src": "https://github.com/bluz71/vim-moonfly-colors.git"
     },
     "vim-suda": {
@@ -61,11 +65,11 @@
       "src": "https://github.com/lambdalisue/vim-suda.git"
     },
     "vimtex": {
-      "rev": "95b93a24740f7b89dd8331326b41bdd1337d79f6",
+      "rev": "0f42a5130432d4af2e6fd21fb93a76915ff1f090",
       "src": "https://github.com/lervag/vimtex.git"
     },
     "visual-whitespace.nvim": {
-      "rev": "2eefcbcbe294ea6610868755db7ddb8f92f68a1c",
+      "rev": "49ff2b1c572ed7033a584381fa23aad2bf3bb258",
       "src": "https://github.com/mcauley-penney/visual-whitespace.nvim.git"
     }
   }
