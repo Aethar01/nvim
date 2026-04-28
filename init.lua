@@ -39,21 +39,34 @@ vim.pack.add({
 	-- typst
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git" },
 	-- ai
-	{ src = "https://github.com/supermaven-inc/supermaven-nvim.git" },
+	-- { src = "https://github.com/supermaven-inc/supermaven-nvim.git" },
+	-- { src = "https://github.com/milanglacier/minuet-ai.nvim.git" },
 	-- cmp
-	{ src = "https://github.com/saghen/blink.cmp.git" },
+	{ 	src = "https://github.com/saghen/blink.cmp.git",
+		version = "v1",
+	},
 	-- treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter.git" },
 	-- git
 	{ src = "https://github.com/tpope/vim-fugitive.git" },
 	-- imgpreview
 	{ src = "https://github.com/Aethar01/imgpreview.nvim.git" },
+	-- vertical buffer tabs
+	{ src = "https://github.com/aidancz/buvvers.nvim.git" },
 })
 
+-- vertical buffer tabs
+local buvvers = require("buvvers")
+vim.keymap.set("n", "<leader>bl", buvvers.toggle)
+vim.keymap.set("n", "<C-j>", vim.cmd.bnext)
+vim.keymap.set("n", "<C-k>", vim.cmd.bprevious)
+
+-- vim.opt.runtimepath:prepend("/home/tex/Documents/Projects/imgpreview.nvim")
 -- imgpreview
-require("imgpreview").setup()
-vim.keymap.set('n', '<leader>i', ":ImgPreview<CR>")
-vim.keymap.set('n', 'U', ":ImgPreviewPopup<CR>")
+local imgpreview = require("imgpreview")
+imgpreview.setup()
+vim.keymap.set('n', '<leader>i', imgpreview.render_hovered_inline)
+vim.keymap.set('n', 'U', imgpreview.render_hovered_popup)
 
 -- colorscheme
 vim.g.moonflyTerminalColors = true
@@ -63,16 +76,19 @@ vim.cmd.colorscheme("moonfly")
 vim.cmd.hi("statusline guibg=NONE")
 
 -- oil
-require("oil").setup({
+local oil = require("oil")
+oil.setup({
 	view_options = {
 		show_hidden = true,
 	},
 	keymaps = {
+		-- ["l"] = { "actions.select", mode = "n" },
+		-- ["h"] = { "actions.parent", mode = "n" },
 		[""] = { "actions.close", mode = "n" },
 	}
 })
-vim.keymap.set('n', '<leader>e', ":Oil --float<CR>")
-vim.keymap.set('n', '<leader>E', ":Oil<CR>")
+vim.keymap.set('n', '<leader>e', oil.open_float)
+vim.keymap.set('n', '<leader>E', oil.open)
 
 -- lsp
 require("mason").setup()
@@ -90,23 +106,13 @@ vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
-
--- vim.api.nvim_create_autocmd('LspAttach', {
--- 	callback = function(ev)
--- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
--- 		if client:supports_method('textDocument/completion') then
--- 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
--- 		end
--- 	end,
--- })
--- vim.cmd.set("completeopt+=noselect")
-
 -- mini
-require("mini.pick").setup()
-vim.keymap.set('n', '<leader>f', ":Pick files tool='git'<CR>")
-vim.keymap.set('n', '<leader>g', ":Pick grep tool='git'<CR>")
-vim.keymap.set('n', '<leader>b', ":Pick buffers<CR>")
-vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
+local pick = require('mini.pick')
+pick.setup()
+vim.keymap.set('n', '<leader>f', function() pick.builtin.files({ tool = 'rg' }) end)
+vim.keymap.set('n', '<leader>g', function() pick.builtin.grep_live({ tool = 'rg' }) end)
+vim.keymap.set('n', '<leader>bb', pick.builtin.buffers)
+vim.keymap.set('n', '<leader>h', pick.builtin.help)
 require("mini.move").setup({
 	mappings = {
 		left = 'H',
@@ -155,14 +161,26 @@ vim.g.maplocalleader = ","
 -- suda
 vim.g.suda_smart_edit = 1
 
--- supermaven
-require("supermaven-nvim").setup({
-	keymaps = {
-		accept_suggestion = "<C-l>",
-		clear_suggestion = "<C-h>",
-		accept_word = "<C-j>",
-	}
-})
+-- ai
+-- require("supermaven-nvim").setup({
+-- 	keymaps = {
+-- 		accept_suggestion = "<C-l>",
+-- 		clear_suggestion = "<C-h>",
+-- 		accept_word = "<C-j>",
+-- 	}
+-- })
+-- require('minuet').setup {
+--     virtualtext = {
+--         auto_trigger_ft = {},
+--         keymap = {
+--             accept = '<C-l>',
+--             accept_line = '<C-j>',
+--             prev = '<A-[>',
+--             next = '<A-]>',
+--             dismiss = '<C-h>',
+--         },
+--     },
+-- }
 
 -- tiny-inline-diagnostic
 require("tiny-inline-diagnostic").setup({
@@ -173,17 +191,14 @@ require("tiny-inline-diagnostic").setup({
 require("nvim-treesitter").install({ 'rust', 'lua', 'python', 'markdown' })
 
 -- Set writing options
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "typst", "markdown", "tex"},
-	callback = function()
-		vim.cmd([[
-				"setlocal wrapmargin=10
-				setlocal wrap
-				"setlocal formatoptions+=t
-				setlocal spell
-				setlocal linebreak
-				]])
-	end
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    local ft = vim.bo.filetype
+    local enabled = ft == "markdown" or ft == "tex" or ft == "typst"
+    vim.opt_local.wrap = enabled
+    vim.opt_local.spell = enabled
+    vim.opt_local.linebreak = enabled
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
