@@ -101,6 +101,7 @@ vim.lsp.enable({
 	'clangd',
 	'ocamllsp',
 	'marksman',
+	'gopls',
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action)

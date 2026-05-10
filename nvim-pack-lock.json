@@ -1,11 +1,16 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "90d14caca4ae557665ab105080c27d5f289a2e30",
-      "src": "https://github.com/saghen/blink.cmp.git"
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "src": "https://github.com/saghen/blink.cmp.git",
+      "version": "'v1'"
+    },
+    "buvvers.nvim": {
+      "rev": "00f187c950e38b1116747271ec8037a8dc7a3f10",
+      "src": "https://github.com/aidancz/buvvers.nvim.git"
     },
     "imgpreview.nvim": {
-      "rev": "1cee5967b2ac67f2f813024fd92c39efd446c310",
+      "rev": "0d8d0285026608e8f0f77675d1a684ad53f31a0a",
       "src": "https://github.com/Aethar01/imgpreview.nvim.git"
     },
     "mason.nvim": {
@@ -49,7 +54,7 @@
       "src": "https://github.com/supermaven-inc/supermaven-nvim.git"
     },
     "tiny-inline-diagnostic.nvim": {
-      "rev": "e4b60e3794098f9f3e244809296a0a1a63818d12",
+      "rev": "147af4e49f51dd48f41972de26552872b8ba7b25",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git"
     },
     "vim-fugitive": {
