@@ -151,12 +151,12 @@ vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<C-n>", ":cnext<CR>")
 vim.keymap.set("n", "<C-p>", ":cprevious<CR>")
 
-local pdf_viewer = "sioyek"
+local pdf_viewer = "gopdf"
 
 -- vimtex
-vim.g.vimtex_view_method = pdf_viewer
+-- vim.g.vimtex_view_method = pdf_viewer
 vim.g.vimtex_view_general_viewer = pdf_viewer
-vim.g.vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
+-- vim.g.vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
 vim.g.maplocalleader = ","
 
 -- suda
