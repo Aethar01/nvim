@@ -160,7 +160,7 @@ vim.g.vimtex_view_general_viewer = pdf_viewer
 vim.g.maplocalleader = ","
 
 -- suda
-vim.g.suda_smart_edit = 1
+vim.g.suda_smart_edit = 0
 
 -- ai
 -- require("supermaven-nvim").setup({
