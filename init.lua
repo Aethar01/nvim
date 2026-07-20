@@ -42,7 +42,8 @@ vim.pack.add({
 	-- { src = "https://github.com/supermaven-inc/supermaven-nvim.git" },
 	-- { src = "https://github.com/milanglacier/minuet-ai.nvim.git" },
 	-- cmp
-	{ 	src = "https://github.com/saghen/blink.cmp.git",
+	{
+		src = "https://github.com/saghen/blink.cmp.git",
 		version = "v1",
 	},
 	-- treesitter
@@ -53,6 +54,8 @@ vim.pack.add({
 	{ src = "https://github.com/Aethar01/imgpreview.nvim.git" },
 	-- vertical buffer tabs
 	{ src = "https://github.com/aidancz/buvvers.nvim.git" },
+	{ src = "https://github.com/nvim-mini/mini.indentscope" },
+	{ src = "https://github.com/nvim-orgmode/orgmode" },
 })
 
 -- vertical buffer tabs
@@ -104,6 +107,7 @@ vim.lsp.enable({
 	'gopls',
 	'astro',
 	'cssls',
+	'org',
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action)
@@ -113,6 +117,15 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 local pick = require('mini.pick')
 pick.setup()
 vim.keymap.set('n', '<leader>f', function() pick.builtin.files({ tool = 'rg' }) end)
+vim.keymap.set('n', '<leader>of', function()
+	pick.builtin.files(nil, {
+		tool = 'rg',
+		source = {
+			cwd = vim.fn.expand("~/Sync/org"),
+			name = "Org files",
+		},
+	})
+end)
 vim.keymap.set('n', '<leader>g', function() pick.builtin.grep_live({ tool = 'rg' }) end)
 vim.keymap.set('n', '<leader>bb', pick.builtin.buffers)
 vim.keymap.set('n', '<leader>h', pick.builtin.help)
@@ -126,6 +139,14 @@ require("mini.move").setup({
 })
 require("mini.snippets").setup()
 require("mini.surround").setup()
+local is = require("mini.indentscope")
+is.setup({
+	symbol = '│',
+	draw = {
+		delay = 0,
+		animation = is.gen_animation.none()
+	}
+})
 
 -- blink
 require("blink.cmp").setup({
@@ -193,15 +214,66 @@ require("tiny-inline-diagnostic").setup({
 -- treesitter
 require("nvim-treesitter").install({ 'rust', 'lua', 'python', 'markdown' })
 
+-- nvim-orgmode
+require("orgmode").setup({
+	org_agenda_files = '~/Sync/org/**/*',
+	org_default_notes_file = '~/Sync/org/refile.org',
+	org_capture_templates = {
+		e = {
+			description = "Appointment or event",
+			template = "* %^{Title}\n  %^{When}T\n\n%?",
+			target = "~/Sync/org/calendar.org",
+		},
+		n = {
+			description = "General note",
+			template = "* %^{Title}\n  Captured: %U\n\n%?",
+			target = "~/Sync/org/notes.org",
+		},
+		m = {
+			description = "Meeting notes",
+			template = [[
+				* %^{Meeting title}
+				  %^{When}T
+
+				** Attendees
+				- %?
+
+				** Notes
+
+				** Decisions
+
+				** Action items
+				- [ ]
+				]],
+			target = "~/Sync/org/meetings.org",
+		},
+		b = {
+			description = "Bookmark from clipboard",
+			template = "* [[%x][%^{Description}]]\n  Added: %U\n\n%?",
+			target = "~/Sync/org/bookmarks.org",
+		},
+	},
+})
+local orgmode_group = vim.api.nvim_create_augroup("orgmode", { clear = true })
+vim.api.nvim_create_autocmd(
+  'FileType',
+  {
+    group = orgmode_group,
+    pattern = 'org',
+    command = 'setlocal nofoldenable'
+  }
+)
+
+
 -- Set writing options
 vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    local ft = vim.bo.filetype
-    local enabled = ft == "markdown" or ft == "tex" or ft == "typst"
-    vim.opt_local.wrap = enabled
-    vim.opt_local.spell = enabled
-    vim.opt_local.linebreak = enabled
-  end,
+	callback = function()
+		local ft = vim.bo.filetype
+		local enabled = ft == "markdown" or ft == "tex" or ft == "typst"
+		vim.opt_local.wrap = enabled
+		vim.opt_local.spell = enabled
+		vim.opt_local.linebreak = enabled
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
