@@ -13,6 +13,7 @@ vim.o.undofile = true
 vim.o.scrolloff = 8
 vim.o.conceallevel = 2
 -- vim.o.concealcursor = 'nc'
+vim.o.modeline = true
 vim.g.mapleader = " "
 vim.g.have_nerd_font = true
 
