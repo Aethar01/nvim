@@ -11,6 +11,8 @@ vim.o.signcolumn = "yes"
 vim.o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.o.undofile = true
 vim.o.scrolloff = 8
+vim.o.conceallevel = 2
+-- vim.o.concealcursor = 'nc'
 vim.g.mapleader = " "
 vim.g.have_nerd_font = true
 
@@ -269,7 +271,7 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		local ft = vim.bo.filetype
-		local enabled = ft == "markdown" or ft == "tex" or ft == "typst"
+		local enabled = ft == "markdown" or ft == "tex" or ft == "typst" or ft == "org"
 		vim.opt_local.wrap = enabled
 		vim.opt_local.spell = enabled
 		vim.opt_local.linebreak = enabled
