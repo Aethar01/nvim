@@ -28,6 +28,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.move.git" },
 	{ src = "https://github.com/nvim-mini/mini.snippets.git" },
 	{ src = "https://github.com/nvim-mini/mini.surround.git" },
+	{ src = "https://github.com/nvim-mini/mini.indentscope" },
 	-- lsp
 	{ src = "https://github.com/neovim/nvim-lspconfig.git" },
 	{ src = "https://github.com/mason-org/mason.nvim.git" },
@@ -57,8 +58,10 @@ vim.pack.add({
 	{ src = "https://github.com/Aethar01/imgpreview.nvim.git" },
 	-- vertical buffer tabs
 	{ src = "https://github.com/aidancz/buvvers.nvim.git" },
-	{ src = "https://github.com/nvim-mini/mini.indentscope" },
+	-- orgmode
 	{ src = "https://github.com/nvim-orgmode/orgmode" },
+	-- table mode
+	{ src = "https://github.com/dhruvasagar/vim-table-mode" },
 })
 
 -- vertical buffer tabs

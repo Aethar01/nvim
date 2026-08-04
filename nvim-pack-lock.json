@@ -81,6 +81,10 @@
       "rev": "c492741",
       "src": "https://github.com/lambdalisue/vim-suda.git"
     },
+    "vim-table-mode": {
+      "rev": "bb025308a45c67c7c8f0763ba37bc2ee3f534df0",
+      "src": "https://github.com/dhruvasagar/vim-table-mode"
+    },
     "vimtex": {
       "rev": "0f42a5130432d4af2e6fd21fb93a76915ff1f090",
       "src": "https://github.com/lervag/vimtex.git"
