@@ -61,7 +61,7 @@ vim.pack.add({
 	-- orgmode
 	{ src = "https://github.com/nvim-orgmode/orgmode" },
 	-- table mode
-	{ src = "https://github.com/dhruvasagar/vim-table-mode" },
+	-- { src = "https://github.com/dhruvasagar/vim-table-mode" },
 })
 
 -- vertical buffer tabs
@@ -223,16 +223,16 @@ require("nvim-treesitter").install({ 'rust', 'lua', 'python', 'markdown' })
 -- nvim-orgmode
 require("orgmode").setup({
 	org_agenda_files = '~/Sync/org/**/*',
-	org_default_notes_file = '~/Sync/org/refile.org',
+	org_default_notes_file = '~/Sync/org/inbox.org',
 	org_capture_templates = {
 		e = {
 			description = "Appointment or event",
-			template = "* %^{Title}\n  %^{When}T\n\n%?",
+			template = "* %^{Title}\n\tSCHEDULED: %^{When}T\n\n%?",
 			target = "~/Sync/org/calendar.org",
 		},
 		n = {
 			description = "General note",
-			template = "* %^{Title}\n  Captured: %U\n\n%?",
+			template = "* %^{Title}\n\tCaptured: %U\n\n%?",
 			target = "~/Sync/org/notes.org",
 		},
 		m = {
@@ -255,7 +255,7 @@ require("orgmode").setup({
 		},
 		b = {
 			description = "Bookmark from clipboard",
-			template = "* [[%x][%^{Description}]]\n  Added: %U\n\n%?",
+			template = "* [[%x][%^{Description}]]\n\tAdded: %U\n\n%?",
 			target = "~/Sync/org/bookmarks.org",
 		},
 	},
