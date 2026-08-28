@@ -12,7 +12,7 @@ vim.o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.o.undofile = true
 vim.o.scrolloff = 8
 vim.o.conceallevel = 2
--- vim.o.concealcursor = 'nc'
+vim.o.concealcursor = 'nc'
 vim.o.modeline = true
 vim.g.mapleader = " "
 vim.g.have_nerd_font = true
@@ -124,17 +124,25 @@ local pick = require('mini.pick')
 pick.setup()
 vim.keymap.set('n', '<leader>f', function() pick.builtin.files({ tool = 'rg' }) end)
 vim.keymap.set('n', '<leader>of', function()
-	pick.builtin.files(nil, {
-		tool = 'rg',
-		source = {
-			cwd = vim.fn.expand("~/Sync/org"),
-			name = "Org files",
-		},
-	})
+	pick.builtin.cli({
+	command = {
+		"rg",
+		"--files",
+		"--glob", "!*.org_archive",
+	},
+}, {
+	source = {
+		cwd = vim.fn.expand("~/Sync/org"),
+		name = "Org files",
+	},
+})
 end)
 vim.keymap.set('n', '<leader>g', function() pick.builtin.grep_live({ tool = 'rg' }) end)
 vim.keymap.set('n', '<leader>bb', pick.builtin.buffers)
 vim.keymap.set('n', '<leader>h', pick.builtin.help)
+vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", {
+	link = "Visual",
+})
 require("mini.move").setup({
 	mappings = {
 		left = 'H',
@@ -307,3 +315,4 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "<leader>mr", ":make %<CR>")
 	end
 })
+
