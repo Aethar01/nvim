@@ -187,12 +187,12 @@ vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<C-n>", ":cnext<CR>")
 vim.keymap.set("n", "<C-p>", ":cprevious<CR>")
 
--- local pdf_viewer = "gopdf"
+-- local pdf_viewer = "onon"
 
 -- vimtex
 vim.g.maplocalleader = ","
 vim.g.vimtex_view_method = "general"
-vim.g.vimtex_view_general_viewer = "gopdf"
+vim.g.vimtex_view_general_viewer = "onon"
 vim.g.vimtex_view_general_options = "--unique @pdf"
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -201,8 +201,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<localleader>v", function()
       local pdf = vim.fn.expand("%:p:r") .. ".pdf"
       local target = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
-      vim.system({ "gopdf", "--unique", "--command", "synctex-forward " .. target, pdf })
-    end, { buffer = true, desc = "Forward search to gopdf" })
+      vim.system({ "onon", "--unique", "--command", "synctex-forward " .. target, pdf })
+    end, { buffer = true, desc = "Forward search to onon" })
   end,
 })
 
