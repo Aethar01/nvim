@@ -12,7 +12,7 @@ vim.o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.o.undofile = true
 vim.o.scrolloff = 8
 vim.o.conceallevel = 2
--- vim.o.concealcursor = 'nc'
+vim.o.concealcursor = 'nc'
 vim.o.modeline = true
 vim.g.mapleader = " "
 vim.g.have_nerd_font = true
@@ -21,7 +21,7 @@ require('vim._core.ui2').enable()
 
 -- packages
 vim.pack.add({
-	-- moonfly colors
+	-- colors
 	{ src = "https://github.com/bluz71/vim-moonfly-colors.git" },
 	-- mini
 	{ src = "https://github.com/nvim-mini/mini.pick.git" },
@@ -59,9 +59,8 @@ vim.pack.add({
 	-- vertical buffer tabs
 	{ src = "https://github.com/aidancz/buvvers.nvim.git" },
 	-- orgmode
-	{ src = "https://github.com/nvim-orgmode/orgmode" },
-	-- table mode
-	-- { src = "https://github.com/dhruvasagar/vim-table-mode" },
+	{ src = "https://github.com/nvim-orgmode/orgmode.git" },
+	{ src = "https://github.com/ChmaraX/herdr-nvim.git" },
 })
 
 -- vertical buffer tabs
@@ -180,13 +179,24 @@ vim.keymap.set("n", "<leader>vc", ":e ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<C-n>", ":cnext<CR>")
 vim.keymap.set("n", "<C-p>", ":cprevious<CR>")
 
-local pdf_viewer = "gopdf"
+-- local pdf_viewer = "gopdf"
 
 -- vimtex
--- vim.g.vimtex_view_method = pdf_viewer
-vim.g.vimtex_view_general_viewer = pdf_viewer
--- vim.g.vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
 vim.g.maplocalleader = ","
+vim.g.vimtex_view_method = "general"
+vim.g.vimtex_view_general_viewer = "gopdf"
+vim.g.vimtex_view_general_options = "--unique @pdf"
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "tex" },
+  callback = function()
+    vim.keymap.set("n", "<localleader>v", function()
+      local pdf = vim.fn.expand("%:p:r") .. ".pdf"
+      local target = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
+      vim.system({ "gopdf", "--unique", "--command", "synctex-forward " .. target, pdf })
+    end, { buffer = true, desc = "Forward search to gopdf" })
+  end,
+})
 
 -- suda
 vim.g.suda_smart_edit = 0
@@ -307,3 +317,16 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "<leader>mr", ":make %<CR>")
 	end
 })
+
+vim.api.nvim_create_user_command("PackClean", function()
+  local unused = vim.iter(vim.pack.get())
+    :filter(function(p)
+      return not p.active
+    end)
+    :map(function(p)
+      return p.spec.name
+    end)
+    :totable()
+
+  vim.pack.del(unused)
+end, {})

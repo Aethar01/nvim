@@ -9,6 +9,10 @@
       "rev": "00f187c950e38b1116747271ec8037a8dc7a3f10",
       "src": "https://github.com/aidancz/buvvers.nvim.git"
     },
+    "herdr-nvim": {
+      "rev": "d2dd1899dd7b4ee36719e315e97f326b8aada171",
+      "src": "https://github.com/ChmaraX/herdr-nvim.git"
+    },
     "imgpreview.nvim": {
       "rev": "0d8d0285026608e8f0f77675d1a684ad53f31a0a",
       "src": "https://github.com/Aethar01/imgpreview.nvim.git"
@@ -37,10 +41,6 @@
       "rev": "2715e04bea3ec9244f15b421dc5b18c0fe326210",
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
-    "mini.tabline": {
-      "rev": "7e8584a06b86902c64227e4abd0c39ae74061101",
-      "src": "https://github.com/nvim-mini/mini.tabline"
-    },
     "nvim-colorizer.lua": {
       "rev": "5cfe7fffbd01e17b3c1e14af85d5febdef88bd8c",
       "src": "https://github.com/catgoose/nvim-colorizer.lua.git"
@@ -61,10 +61,6 @@
       "rev": "f32a06d4b5399dad8bf0478c772bf6c513f02dcf",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
-    "supermaven-nvim": {
-      "rev": "07d20fc",
-      "src": "https://github.com/supermaven-inc/supermaven-nvim.git"
-    },
     "tiny-inline-diagnostic.nvim": {
       "rev": "147af4e49f51dd48f41972de26552872b8ba7b25",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim.git"
@@ -80,10 +76,6 @@
     "vim-suda": {
       "rev": "c492741",
       "src": "https://github.com/lambdalisue/vim-suda.git"
-    },
-    "vim-table-mode": {
-      "rev": "bb025308a45c67c7c8f0763ba37bc2ee3f534df0",
-      "src": "https://github.com/dhruvasagar/vim-table-mode"
     },
     "vimtex": {
       "rev": "0f42a5130432d4af2e6fd21fb93a76915ff1f090",
